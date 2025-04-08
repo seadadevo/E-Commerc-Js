@@ -121,7 +121,6 @@ const productContainerAppliances = document.getElementById("swiper_appliances");
 const productContainerMobiles = document.getElementById("swiper_mobiles");
 const apiUrl = "./products.json";
 
-
 const getData = async (Api) => {
   try {
     const res = await fetch(Api);
@@ -136,26 +135,34 @@ const getData = async (Api) => {
 getData(apiUrl);
 
 const renderUi = (data) => {
-  data.forEach((product) => {
+  const discountedProducts = data.filter((product) => {
     const percent_price = Math.floor(
       ((product.old_price - product.price) / product.old_price) * 100
     );
-
-    if (!isNaN(percent_price) && percent_price > 0) {
-      renderCardContent(productContainer, product);
-    }
-    if (product.category === "electronics") {
-      renderCardContent(productContainerElectronics, product);
-    }
-    if (product.category === "appliances") {
-      renderCardContent(productContainerAppliances, product);
-    }
-    if (product.category === "mobiles") {
-      renderCardContent(productContainerMobiles, product);
-    }
+    return !isNaN(percent_price) && percent_price > 0;
   });
-};
 
+  const electronics = data.filter(
+    (product) => product.category === "electronics"
+  );
+  const appliances = data.filter(
+    (product) => product.category === "appliances"
+  );
+  const mobiles = data.filter((product) => product.category === "mobiles");
+
+  discountedProducts.forEach((product) =>
+    renderCardContent(productContainer, product)
+  );
+  electronics.forEach((product) =>
+    renderCardContent(productContainerElectronics, product)
+  );
+  appliances.forEach((product) =>
+    renderCardContent(productContainerAppliances, product)
+  );
+  mobiles.forEach((product) =>
+    renderCardContent(productContainerMobiles, product)
+  );
+};
 
 const renderCardContent = (container, product) => {
   const percent_price = Math.floor(
