@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "sale": 50,
+    "img": "./img/product/0.png",
+    "name": "Infinix Smart (Galaxy White.40B RAM, 640B Storage)",
+    "price": 50,
+    "oldPrice": 80
+  },
+  {
+    "id": 2,
+    "sale": 30,
+    "img": "./img/product/1.png",
+    "name": "Scanner Barcoae Handheld Code 2D/OR/1D",
+    "price": 70,
+    "oldPrice": 100
+  },
+  {
+    "id": 3,
+    "sale": 20,
+    "img": "./img/product/2.png",
+    "name": "USB Wired Barcode Reader 2D/1D",
+    "price": 90,
+    "oldPrice" : 120
+  },
+  {
+    "id": 4,
+    "sale": 40,
+    "img": "./img/product/3.png",
+    "name": "Mini Pocket 2D Barcode Scanner Wireless",
+    "price": 60,
+    "oldPrice": 100
+  },
+  {
+    "id": 5,
+    "sale": 25,
+    "img": "./img/product/4.png",
+    "name": "High-Speed Barcode Scanner for Retail POS",
+    "price": 80,
+    "oldPrice": 110
+  },
+  {
+    "id": 6,
+    "sale": 35,
+    "img": "./img/product/5.png",
+    "name": "Auto-Sensing 2D QR Code Scanner USB",
+    "price": 55,
+    "oldPrice": 85
+  },
+  {
+    "id": 7,
+    "sale": 45,
+    "img": "./img/product/6.png",
+    "name": "Cordless Barcode Scanner with Long Battery",
+    "price": 65,
+    "oldPrice": 95
+  },
+  {
+    "id": 8,
+    "sale": 15,
+    "img": "./img/product/7.png",
+    "name": "Omnidirectional Barcode Scanner Desktop",
+    "price": 85,
+    "oldPrice": 105
+  },
+  {
+    "id": 9,
+    "sale": 60,
+    "img": "./img/product/8.png",
+    "name": "Mini Pocket 2D Barcode Scanner Wireless",
+    "price": 40,
+    "oldPrice": 70
+  },
+  {
+    "id": 10,
+    "sale": 10,
+    "img": "./img/product/9.png",
+    "name": "Wireless Barcode Scanner 2D/1D Handheld",
+    "price": 75,
+    "oldPrice": 90
+  }
+]
