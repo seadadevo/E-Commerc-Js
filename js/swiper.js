@@ -5,6 +5,7 @@ var swiper = new Swiper(".swiper_1", {
         delay: 2500,
     },
     loop: true,
+    effect: "coverflow",
     pagination: {
         el: ".swiper-pagination",
         clickable: true,
