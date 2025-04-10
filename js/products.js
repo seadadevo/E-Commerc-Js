@@ -154,7 +154,7 @@ const renderUi = (data) => {
     renderCardContent(productContainer, product)
   );
   electronics.forEach((product) =>
-    renderCardContent(productContainerElectronics, product)
+      renderCardContent(productContainerElectronics, product)
   );
   appliances.forEach((product) =>
     renderCardContent(productContainerAppliances, product)
@@ -201,7 +201,7 @@ const renderCardContent = (container, product) => {
                       <div class="icons">
                           <span onclick="addToCart( ${
                             product.id
-                          }, this)" class="btns_add_cart">
+                          }, this)" class="btns_add_cart" data-id = ${product.id}>
                               <i class="fa-solid fa-cart-shopping"></i>
                               Add To Cart
                           </span>
