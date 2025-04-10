@@ -15,17 +15,39 @@ function closeCart() {
 
 var all_json_data;
 const cart_items = document.getElementById("cart_items");
-let products_cart = [];
+let products_cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+window.addEventListener("load", () => {
+  displatItem();
+  getTotalPrice();
+  getCount();
+  updateAddButtons();
+});
+
+function updateAddButtons() {
+    const addButtons = document.querySelectorAll(".btns_add_cart");
+  
+    addButtons.forEach((btn) => {
+      const productId = btn.dataset.id;
+      const productInCart = products_cart.find(product => product.id == productId);
+      if (productInCart) {
+        btn.classList.add("active"); 
+      } else {
+        btn.classList.remove("active");
+    }
+    });
+  }
 
 // ! Add To cart
 function addToCart(id, btn) {
   products_cart.push({ ...all_json_data[id], quantity: 1 });
   console.log(products_cart);
-
+  localStorage.setItem("cart", JSON.stringify(products_cart));
   btn.classList.add("active");
   displatItem();
   getTotalPrice();
   getCount();
+  updateAddButtons();
 }
 
 // ! Display cards
@@ -61,6 +83,7 @@ function increaseItem(id, delta) {
   const item = products_cart.find((p) => p.id === id);
   if (item) {
     item.quantity += delta;
+    localStorage.setItem("cart", JSON.stringify(products_cart));
     displatItem();
     getTotalPrice();
     getCount();
@@ -71,6 +94,7 @@ function decreaseItem(id, delta) {
   const index = products_cart.findIndex((p) => p.id === id);
   if (item && item.quantity > 1) {
     item.quantity += delta;
+    localStorage.setItem("cart", JSON.stringify(products_cart));
     displatItem();
     getTotalPrice();
     getCount();
@@ -82,7 +106,7 @@ function decreaseItem(id, delta) {
 function removeFromCart(index) {
   const removedProduct = products_cart[index];
   products_cart.splice(index, 1);
-
+  localStorage.setItem("cart", JSON.stringify(products_cart));
   const addButtons = document.querySelectorAll(".btns_add_cart");
   addButtons.forEach((btn) => {
     if (btn.dataset.id == removedProduct.id) {
