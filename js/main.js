@@ -21,19 +21,23 @@ window.addEventListener("load", () => {
   displatItem();
   getTotalPrice();
   getCount();
-  updateAddButtons();
 });
 
 function updateAddButtons() {
     const addButtons = document.querySelectorAll(".btns_add_cart");
-  
+    
     addButtons.forEach((btn) => {
       const productId = btn.dataset.id;
       const productInCart = products_cart.find(product => product.id == productId);
       if (productInCart) {
         btn.classList.add("active"); 
+         btn.innerHTML = `<i class="fa-solid fa-cart-shopping"></i>
+                              Item In Cart`
       } else {
         btn.classList.remove("active");
+        btn.innerHTML = ` <i class="fa-solid fa-cart-shopping"></i>
+                              Add To Cart`
+
     }
     });
   }
@@ -44,23 +48,26 @@ function addToCart(id, btn) {
   console.log(products_cart);
   localStorage.setItem("cart", JSON.stringify(products_cart));
   btn.classList.add("active");
+  btn.innerHTML = `<i class="fa-solid fa-cart-shopping"></i>
+                              Item In Cart`
   displatItem();
   getTotalPrice();
   getCount();
-  updateAddButtons();
 }
 
 // ! Display cards
 function displatItem() {
-  var item_c;
-
+  var item_c = "";
+  if (products_cart.length === 0) {
+    item_c = `<p class="empty-cart">Your cart is empty</p>`;
+  }
   for (let i = 0; i < products_cart.length; i++) {
     item_c += `
         <div class="item_cart">
                 <img src="${products_cart[i].img}" alt="">
                 <div class="content">
                     <h4>L${products_cart[i].name}</h4>
-                    <p class="price_cart">${products_cart[i].price}</p>
+                    <p class="price_cart">$${products_cart[i].price}</p>
                     <div class="quantity_control" data-id = "${products_cart[i].id}">
                         <button onclick ="decreaseItem(${products_cart[i].id}, -1)" class="decrease_quantity">-</button>
                         <span class="quantity">${products_cart[i].quantity}</span>
@@ -111,6 +118,8 @@ function removeFromCart(index) {
   addButtons.forEach((btn) => {
     if (btn.dataset.id == removedProduct.id) {
       btn.classList.remove("active");
+      btn.innerHTML = ` <i class="fa-solid fa-cart-shopping"></i>
+                              Add To Cart`
     }
   });
 
@@ -141,16 +150,29 @@ function getCount() {
 let lastScrollTop = 0;
 const bottomHeader = document.querySelector(".bottom-header");
 const header = document.querySelector("header");
-window.addEventListener("scroll", function () {
-    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-  
-    if (currentScroll > lastScrollTop) {
-      bottomHeader.classList.add("hide");
-      header.classList.add("hide");
-    } else {
-      bottomHeader.classList.remove("hide");
-      header.classList.remove("hide");
-    }
-  
-    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; 
-  });
+
+function handleScroll() {
+  const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+  if (currentScroll > lastScrollTop) {
+    bottomHeader.classList.add("hide");
+    header.classList.add("hide");
+  } else {
+    bottomHeader.classList.remove("hide");
+    header.classList.remove("hide");
+  }
+  lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+}
+
+const mediaQuery = window.matchMedia("(min-width: 1025px)");
+
+if (mediaQuery.matches) {
+  window.addEventListener("scroll", handleScroll);
+}
+
+mediaQuery.addEventListener("change", (e) => {
+  if (e.matches) {
+    window.addEventListener("scroll", handleScroll);
+  } else {
+    window.removeEventListener("scroll", handleScroll);
+  }
+});
