@@ -136,3 +136,21 @@ function getCount() {
   count_item_header.textContent = products_cart.length;
   Count_item_cart.textContent = products_cart.length;
 }
+
+
+let lastScrollTop = 0;
+const bottomHeader = document.querySelector(".bottom-header");
+const header = document.querySelector("header");
+window.addEventListener("scroll", function () {
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+  
+    if (currentScroll > lastScrollTop) {
+      bottomHeader.classList.add("hide");
+      header.classList.add("hide");
+    } else {
+      bottomHeader.classList.remove("hide");
+      header.classList.remove("hide");
+    }
+  
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; 
+  });

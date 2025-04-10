@@ -209,6 +209,12 @@ header {
   box-shadow: 0 0px 12px rgba(0, 0, 0, 0.2);
   z-index: 200;
 }
+header.hide {
+  height: 90px;
+}
+header .top_header {
+  z-index: 10;
+}
 header .top_header .container {
   display: flex;
   align-items: center;
@@ -294,6 +300,10 @@ header .top_header .container .header_icons .icon .count {
 }
 header .bottom-header {
   border-top: 1px solid var(--border-color);
+}
+header .bottom-header.hide {
+  transform: translateY(-500%);
+  z-index: -1;
 }
 header .bottom-header .container {
   display: flex;
