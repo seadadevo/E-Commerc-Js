@@ -4,7 +4,10 @@
     .container {
         display: flex;
         justify-content: space-between;
-
+        flex-wrap: wrap;
+        @include media(1100px) {
+            gap: 20px;
+        }
         .box {
             width: 24%;
             background: url(../img/bg_banner3.jpg);
@@ -58,4 +61,22 @@
             }
         }
     }
+
+    @media (max-width: 992px) {
+       
+        .container {
+          .box {
+            width: 48%;
+          }
+        }
+      }
+    
+      @media (max-width: 576px) {
+        .container {
+          .box {
+            width: 100%;
+            justify-content: space-evenly;
+          }
+        }
+      }
 }

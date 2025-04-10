@@ -11,6 +11,7 @@ const getData = async (Api) => {
     const res = await fetch(Api);
     const data = await res.json();
     all_json_data = data;
+    updateAddButtons();
     renderUi(data);
   } catch (error) {
     console.error("Cannot fetching cards", error);

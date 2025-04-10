@@ -8,6 +8,9 @@ header {
   z-index: 200;
   &.hide {
     height: 90px;
+    @include media(1024px) {
+      height: 175px;
+    }
   }
   .top_header {
     z-index: 10;
@@ -17,6 +20,25 @@ header {
       justify-content: space-between;
       padding: 15px 0;
 
+      @include media(1024px) {
+        flex-wrap: wrap;
+        .search_box{ 
+          order: 3;
+          width: 80%;
+          margin: 20px auto 0;
+
+          select{ 
+            width: 200px;
+          }
+          input{ 
+            width: calc(100% - 200px);
+          }
+
+        }
+        .logo {
+          width: 140px;
+        }
+      }
       .logo {
         width: 180px;
       }
@@ -27,7 +49,13 @@ header {
         align-items: center;
         border-radius: 2px;
         background: var(--bg-color);
-
+        @include media(574px){
+          width: 100%;
+          input{ 
+            width: calc(100% - 140px);
+          }
+        }
+      
         .select_box {
           position: relative;
 
@@ -50,7 +78,9 @@ header {
             cursor: pointer;
             padding-left: 10px;
             margin-right: 10px;
-
+            @include media(574px) {
+              width: 140px;
+            }
             option {
               font-size: 15px;
             }
@@ -71,7 +101,8 @@ header {
 
         input {
           height: 55px;
-          width: 400px;
+          // width: 400px;
+          max-width: 100%;
           padding: 5px 15px 5px 10px;
           background-color: var(--bg-color);
           outline: none;
@@ -115,6 +146,7 @@ header {
       transform: translateY(-500%);
       z-index: -1;
     }
+    
     .container {
       display: flex;
       align-items: center;
@@ -123,14 +155,40 @@ header {
       nav {
         display: flex;
         align-items: center;
-        gap: 50px;
+        gap: 35px;
         height: 60px;
-
+        @include media(1024px) {
+          gap: 20px;
+        }
+        .open_menu{
+          display: none;
+          @include media(1024px) {
+            display: block;
+            font-size: 25px;
+            i {
+              color: var(--main-color);
+              border: 1px solid var(--main-color);
+              height: 40px;
+              width: 40px;
+              text-align: center;
+              line-height: 40px;
+              cursor: pointer;
+            }
+          }
+        }
         .category_nav {
           width: 220px;
           height: 100%;
           position: relative;
-
+          @include media(1024px) {
+            width: auto;
+            .category_btn{
+              gap: 10px;
+            }
+          }
+          @include media(574px) {
+            display: none;
+          }
           .category_btn {
             height: 100%;
             width: 100%;
@@ -196,7 +254,37 @@ header {
         .nav_links {
           display: flex;
           gap: 35px;
-
+          .close_menu{
+            display: none;
+            @include media(1024px) {
+              display: block;
+              position: absolute;
+              top: 30px;
+              right: 30px;
+              font-size: 30px;
+              cursor: pointer;
+            }
+          }
+          @include media(1024px) {
+            position: fixed;
+            inset: 0;
+            left: -400px;
+            background-color: #fff;
+            width: 400px;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 100px;
+            border: 1px solid #b5b5b5;
+            transition: 0.3s;
+            &.active{
+              left: 0;
+            }
+            li {
+              font-size: 18px;
+              height: auto;
+            }
+          }
+          
           li {
             &.active a {
               color: var(--main-color);
@@ -230,7 +318,7 @@ header {
           gap: 10px;
           align-items: center;
           transition: scale 0.3s;
-
+          font-size: 14px;
           &:hover {
             scale: 1.1;
           }
