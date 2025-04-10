@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>product</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+         body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #333;
+    }
+        #product-details {
+      background-color: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      border-radius: 8px;
+      width: 80%;
+      max-width: 1200px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #333;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    img {
+      width: 100%;
+      max-width: 200px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    img:hover {
+      transform: scale(1.05);
+    }
+
+    .price {
+      font-size: 1.5rem;
+      color: #ff6f61;
+      margin-bottom: 10px;
+    }
+
+    .old_price {
+      font-size: 1.2rem;
+      color: #888;
+      text-decoration: line-through;
+    }
+
+    .description {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 12px 24px;
+      background-color: #ff6f61;
+      border: none;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff4d41;
+    }
+
+    .back-button {
+      background-color: #ccc;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-size: 1rem;
+      color: #333;
+      text-decoration: none;
+      margin-top: 20px;
+      display: inline-block;
+    }
+
+    .back-button:hover {
+      background-color: #bbb;
+    }
+    </style>
+</head>
+<body>
+    <div id="product-details">
+        
+      </div>
+      <script>
+       
+    const productDetails = JSON.parse(localStorage.getItem('selectedProduct'));
+    
+    if (productDetails) {
+      const productContainer = document.getElementById('product-details');
+      
+      productContainer.innerHTML = `
+        <h1>${productDetails.name}</h1>
+        <img src="${productDetails.img}" alt="${productDetails.name}">
+        <p><strong>Price:</strong> $${productDetails.price}</p>
+        <p><strong>Old Price:</strong> $${productDetails.old_price || 'N/A'}</p>
+        <p><strong>Description:</strong> ${productDetails.description || 'No description available.'}</p>
+        <button onclick="addToCart(${productDetails.id}, this)">Add To Cart</button>
+      `;
+    } else {
+      alert("Product details not found.");
+    }
+
+      </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="./js/products.js"></script>
+    <script src="./js/swiper.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>
